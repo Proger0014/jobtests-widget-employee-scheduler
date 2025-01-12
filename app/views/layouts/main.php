@@ -46,7 +46,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <footer id="footer" class="my-25px">
     <div class="container">
         <div class="d-f jc-sb text-muted">
-            <div>&copy; proger0014 <?= date('Y') ?></div>
+            <div>&copy; 
+              <?= Html::a('@proger0014', Yii::$app->configuration->projectUrlCreator, ['target' => '_blank']) ?> 
+              <?= date('Y') ?>
+            </div>
             <div><?= Yii::powered() ?></div>
         </div>
     </div>

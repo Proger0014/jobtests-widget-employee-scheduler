@@ -27,6 +27,7 @@ $config = [
                 ],
             ],
         ],
+        'configuration' => require __DIR__ . '/' . 'settings.' . YII_ENV . '.php'
     ]
 ];
 
