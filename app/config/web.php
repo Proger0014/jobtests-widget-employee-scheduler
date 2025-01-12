@@ -27,7 +27,9 @@ $config = [
                 ],
             ],
         ],
-        'configuration' => require __DIR__ . '/' . 'settings.' . YII_ENV . '.php'
+        'configuration' => array_merge(
+          ['class' => 'app\CommonConfiguration'], 
+          require __DIR__ . '/' . 'settings.' . YII_ENV . '.php')
     ]
 ];
 
