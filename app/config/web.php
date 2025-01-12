@@ -2,6 +2,7 @@
 
 $config = [
     'id' => 'basic',
+    'name' => 'Widget Employee Scheduler',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
