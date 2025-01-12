@@ -1,0 +1,27 @@
+.d-f {
+  display: flex;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.fd-col {
+  flex-direction: column;
+}
+
+.fg-1 {
+  flex-grow: 1;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.mh-100vh {
+  min-height: 100vh;
+}
+
+.my-25px {
+  margin: 25px 0 25px;
+}
