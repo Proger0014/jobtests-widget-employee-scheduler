@@ -2,11 +2,10 @@
 
 namespace proger0014\yii2;
 
-use yii\bootstrap\Widget;
+use yii\bootstrap\InputWidget;
 
-class ScheduleInputWidget extends Widget
+class ScheduleInputWidget extends InputWidget
 {
-    public string $name;
     public bool $enableTimeZone = true;
     public bool $enableProductionCalendar = true;
     public bool $enableSpecialTime = true;
@@ -14,7 +13,8 @@ class ScheduleInputWidget extends Widget
 
     public function rules(): array {
         return [
-            [['name'], 'required']
+            [['name'], 'required'],
+            [['enableTimeZone', 'enableProductionCalendar', 'enableSpecialTime'], 'boolean']
         ];
     }
 }
