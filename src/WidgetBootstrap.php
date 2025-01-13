@@ -10,10 +10,8 @@ class WidgetBootstrap implements BootstrapInterface
 {
     public function bootstrap($app)
     {
-        $consts = require dirname(__DIR__) . '/consts.php';
-
-        $app->on(Application::EVENT_BEFORE_REQUEST, function ($event) use ($consts) {
-            Yii::setAlias($consts['alias_assets']['name'], $consts['alias_assets']['path']);
+        $app->on(Application::EVENT_BEFORE_REQUEST, function ($event) {
+            Yii::setAlias('@proger0014/assets', dirname(__DIR__) . '/assets');
         });
     }
 }
