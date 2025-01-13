@@ -18,4 +18,7 @@ composer.phar
 # Mac DS_Store Files
 .DS_Store
 
+# own
 .vscode
+vendor/
+composer.lock
