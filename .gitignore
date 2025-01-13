@@ -20,6 +20,7 @@ composer.phar
 
 # own
 /phpunit.xml
+.phpunit*
 .vscode
 /vendor
 /composer.lock
