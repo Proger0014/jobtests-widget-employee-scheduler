@@ -19,6 +19,7 @@ composer.phar
 .DS_Store
 
 # own
+/phpunit.xml
 .vscode
-vendor/
-composer.lock
+/vendor
+/composer.lock
