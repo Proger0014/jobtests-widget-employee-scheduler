@@ -2,6 +2,8 @@
 
 namespace proger0014\yii2;
 
+use proger0014\yii2\model\ScheduleModel;
+use yii\base\InvalidArgumentException;
 use yii\bootstrap\InputWidget;
 
 class ScheduleInputWidget extends InputWidget
@@ -16,5 +18,20 @@ class ScheduleInputWidget extends InputWidget
             [['name'], 'required'],
             [['enableTimeZone', 'enableProductionCalendar', 'enableSpecialTime'], 'boolean']
         ];
+    }
+
+    public function init() {
+        parent::init();
+
+        $this->checkRequirements();
+    }
+
+    /**
+     * @throws \InvalidArgumentException
+     */
+    public function checkRequirements(): void {
+        if (!is_subclass_of($this->model, ScheduleModel::class, false)) {
+            throw new InvalidArgumentException('model must be of ScheduleModel or extends from that');
+        }
     }
 }
