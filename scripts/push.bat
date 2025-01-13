@@ -1,6 +1,8 @@
 @echo off
 
-if %1 == "" (
+set arg1=%~1
+
+if "%arg1%" == "" (
   goto without_commit
 ) else (
   goto with_commit
