@@ -12,6 +12,8 @@ class WidgetBootstrap implements BootstrapInterface
     {
         $app->on(Application::EVENT_BEFORE_REQUEST, function ($event) {
             Yii::setAlias('@proger0014/assets', dirname(__DIR__) . '/assets');
+            Yii::setAlias('@npm', '@vendor/npm-asset');
+            Yii::setAlias('@bower', '@vendor/bower-asset');
         });
     }
 }
