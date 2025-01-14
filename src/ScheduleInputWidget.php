@@ -17,7 +17,9 @@ class ScheduleInputWidget extends InputWidget
     public function init() {
         parent::init();
 
-        $this->checkRequirements();
+        if ($this->model) {
+            $this->checkRequirements();
+        }
     }
 
     /**
