@@ -13,12 +13,6 @@ class ScheduleInputWidget extends InputWidget
     public bool $enableSpecialTime = true;
     public bool $allowMultipleItems = true;
 
-    public function rules(): array {
-        return [
-            [['name'], 'required'],
-            [['enableTimeZone', 'enableProductionCalendar', 'enableSpecialTime'], 'boolean']
-        ];
-    }
 
     public function init() {
         parent::init();
