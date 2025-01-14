@@ -4,6 +4,7 @@ namespace proger0014\yii2;
 
 use proger0014\yii2\model\ScheduleModel;
 use yii\base\InvalidArgumentException;
+use yii\base\Model;
 use yii\bootstrap\InputWidget;
 
 class ScheduleInputWidget extends InputWidget
@@ -23,6 +24,10 @@ class ScheduleInputWidget extends InputWidget
         }
     }
 
+    private function getModel(): ScheduleModel {
+        return $this->model[$this->attribute];
+    }
+
     /**
      * @throws \InvalidArgumentException
      */
@@ -36,7 +41,8 @@ class ScheduleInputWidget extends InputWidget
     }
 
     public function configureAttributes(): void {
-        $attributes = $this->model->attributes();
+        $model = $this->getModel();
+        $attributes = $model->attributes();
 
         if (!$this->enableTimeZone) {
             unset($attributes['enableTimeZone']);
@@ -54,6 +60,6 @@ class ScheduleInputWidget extends InputWidget
             unset($attributes['allowMultipleItems']);
         }
 
-        $this->model->attributes = $attributes;
+        $model->attributes = $attributes;
     }
 }
