@@ -28,7 +28,7 @@ class ScheduleInputWidget extends InputWidget
      */
     public function checkRequirements(): void {
         if (!is_subclass_of($this->model, ScheduleModel::class, false)
-            || $this->model instanceof ScheduleModel) {
+            || !$this->model instanceof ScheduleModel) {
             throw new InvalidArgumentException('model must be of ScheduleModel or extends from that');
         }
     }
