@@ -19,6 +19,7 @@ class ScheduleInputWidget extends InputWidget
 
         if ($this->model) {
             $this->checkRequirements();
+            $this->configureAttributes();
         }
     }
 
@@ -29,5 +30,27 @@ class ScheduleInputWidget extends InputWidget
         if (!is_subclass_of($this->model, ScheduleModel::class, false)) {
             throw new InvalidArgumentException('model must be of ScheduleModel or extends from that');
         }
+    }
+
+    public function configureAttributes(): void {
+        $attributes = $this->model->attributes();
+
+        if (!$this->enableTimeZone) {
+            unset($attributes['enableTimeZone']);
+        }
+
+        if (!$this->enableProductionCalendar) {
+            unset($attributes['enableProductionCalendar']);
+        }
+
+        if (!$this->enableSpecialTime) {
+            unset($attributes['enableSpecialTime']);
+        }
+
+        if (!$this->allowMultipleItems) {
+            unset($attributes['allowMultipleItems']);
+        }
+
+        $this->model->attributes = $attributes;
     }
 }
