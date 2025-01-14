@@ -21,7 +21,8 @@
   ],
   "require": {
     "yiisoft/yii2-bootstrap": "^2.0",
-    "yiisoft/yii2": "^2.0"
+    "yiisoft/yii2": "^2.0",
+    "npm-asset/fontsource--roboto": "^5.1.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^9"
