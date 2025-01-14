@@ -1,0 +1,16 @@
+.widget {
+    --c-green: #28B956;
+    --c-green-light: #74CF8A;
+    --c-white: #ffffff;
+    --c-gray-light: #E3E3E3;
+    --c-gray: #BABABA;
+    --c-disable-gray: #F7F7F7;
+    --c-black: #424242;
+
+    --f-base: 14px 'Roboto', sans-serif;
+
+    --f-title-1: 16px;
+    --f-title-2: 20px;
+
+    font: var(--f-base);
+}

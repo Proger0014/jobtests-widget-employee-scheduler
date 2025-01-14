@@ -1,0 +1,9 @@
+<?php
+
+?>
+
+<div class="widget panel panel-default">
+    <div class="panel-body">
+
+    </div>
+</div>
