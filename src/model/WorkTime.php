@@ -2,11 +2,6 @@
 
 namespace proger0014\yii2\model;
 
-use yii\base\Model;
-
-class WorkTime extends Model
-{
-    use BaseTime;
-
+class WorkTime extends BaseTime {
     public int $day;
 }

@@ -4,10 +4,8 @@ namespace proger0014\yii2;
 
 use proger0014\yii2\model\ScheduleModel;
 use yii\base\InvalidArgumentException;
-use yii\base\Model;
 use yii\bootstrap\InputWidget;
 use yii\helpers\Html;
-use yii\helpers\StringHelper;
 
 class ScheduleInputWidget extends InputWidget
 {
