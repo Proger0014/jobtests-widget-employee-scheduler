@@ -87,7 +87,6 @@ class ScheduleInputWidget extends InputWidget
 
         $render .= Html::endTag('div');
 
-
         $render .= Html::endTag('div');
         $render .= Html::endTag('div');
         $render .= Html::endTag('div');
@@ -107,7 +106,10 @@ class ScheduleInputWidget extends InputWidget
 
     private function renderTimeInput(): string {
         $render = Html::beginTag('div', ['class' => 'form-group']);
-        $render .= Html::input('time', null, '00:00', ['min' => '00:00', 'max' => '23:59']);
+        $render .= Html::input('time', null, '00:00', [
+            'min' => '00:00',
+            'max' => '23:59',
+            'class' => 'form-control']);
         return $render . Html::endTag('div');
     }
 
