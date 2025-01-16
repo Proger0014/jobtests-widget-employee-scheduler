@@ -91,6 +91,26 @@ class ScheduleInputWidget extends InputWidget
         $render .= Html::endTag('div');
         $render .= Html::endTag('div');
 
+        $this->renderButtons();
+
+        return $render . Html::endTag('div');
+    }
+
+    private function renderButtons(): string {
+        if (!$this->enableSpecialTime && !$this->allowMultipleItems) {
+            return '';
+        }
+
+        $render = Html::beginTag('div', ['class' => 'd-flex jc-sb']);
+
+        if ($this->enableSpecialTime) {
+            $render .= Html::tag('button', 'Добавить особенные дни', ['class' => 'btn btn-default']);
+        }
+
+        if ($this->allowMultipleItems) {
+            $render .= Html::tag('button', 'Добавить рабочие часы', ['class' => 'btn btn-primary']);
+        }
+
         return $render . Html::endTag('div');
     }
 
