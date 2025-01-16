@@ -39,7 +39,7 @@
             .attr('name', name)
             .attr('value', value);
     }
-    
+
     function prepareInputs(widget) {
         const inputs = widget(`input[${ATTRIBUTES.INPUT.TYPE}]`);
 
