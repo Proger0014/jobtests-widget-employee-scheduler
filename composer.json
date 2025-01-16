@@ -29,6 +29,6 @@
     "phpunit/phpunit": "^9"
   },
   "extra": {
-    "bootstrap": "proger0014/yii2/WidgetBootstrap"
+    "bootstrap": "proger0014\\yii2\\WidgetBootstrap"
   }
 }
