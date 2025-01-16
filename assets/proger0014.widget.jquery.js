@@ -2,6 +2,7 @@
 
     const ATTRIBUTES = {
         _base_name: 'widget',
+        TARGET: `${this._base_name}-target`,
         INPUT: {
             _base_name_input: `${this._base_name}-input`,
             TYPE: `${this._base_name_input}-type`,
@@ -90,7 +91,7 @@
         const widget = this;
 
         $(document).on('submit', (event) => {
-            const widgetTarget = `form#${widget.attr('widget-target')}`;
+            const widgetTarget = `form#${widget.attr(ATTRIBUTES.TARGET)}`;
 
             if (widgetTarget !== event.target) {
                 return;
