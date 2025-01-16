@@ -11,8 +11,8 @@
         },
         BLOCK: {
             _base_name_block: `${this._base_name}-block`,
-            TIME: `${this._base_name_block}-time`,
-            TIME_BUTTON: `${this._base_name_block}-time-button`
+            ATTR: this._base_name_block,
+            BUTTON: `${this._base_name_block}-button`
         }
     }
 
