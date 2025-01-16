@@ -50,7 +50,7 @@
 
     const BLOCK_HANDLERS = {
         default: (widget, block) => {
-            const inputContainers = block(`[${ATTRIBUTES.INPUT.CONTAINER}]`);
+            const inputContainers = block.find(`[${ATTRIBUTES.INPUT.CONTAINER}]`);
 
             const buttons = block.find(`button[${ATTRIBUTES.BLOCK.BUTTON}]`);
             buttons.each((i, elem) => {
