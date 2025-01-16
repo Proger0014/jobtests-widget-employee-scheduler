@@ -137,7 +137,7 @@ class ScheduleInputWidget extends InputWidget
     }
 
     private function renderSwitch(): string {
-        return Html::checkbox('', false, [
+        return Html::checkbox(null, false, [
             'form' => ''
         ]);
     }
