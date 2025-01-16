@@ -11,12 +11,12 @@ class WidgetAsset extends AssetBundle
     public $sourcePath = "@proger0014/assets";
 
     public $css = [
-        '@proger0014/assets/proger0014.widget.css',
-        '@npm/fontsource--roboto/400.css'
+        'proger0014.widget.css'
     ];
 
     public $depends = [
+        WidgetFontAsset::class,
         BootstrapAsset::class,
-        BootstrapPluginAsset::class,
+        BootstrapPluginAsset::class
     ];
 }
