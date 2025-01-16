@@ -31,6 +31,14 @@
                 }
             }
         },
+        time: {
+            valueFormatter: (valueRaw) => {
+                return `${valueRaw}:00`
+            },
+            domManipulator: (widget, item) => {
+                item.attr('form', null);
+            }
+        }
     };
 
     function createHidden(name, value) {
@@ -51,6 +59,33 @@
         })
     }
 
+    function prepareBinds(widget) {
+        const bindsItems = widget(`input[${ATTRIBUTES.INPUT.BINDS}]`);
+
+        bindsItems.each((i, elem) => {
+            const bindItem = $(elem);
+            const targetItemName = bindItem.attr(ATTRIBUTES.INPUT.NAME);
+
+            const bindsAttrArr = bindItem.attr(ATTRIBUTES.INPUT.BINDS).split(' ');
+            bindsAttrArr.forEach((bind) => {
+                const bindItemTarget = widget(`input[${ATTRIBUTES.INPUT.NAME}="${bind}"]`);
+                const bindItemTargetValue = bindItemTarget.prop('value');
+                const bindItemTargetType = bindItemTarget.attr(ATTRIBUTES.INPUT.TYPE);
+                const formattedValue = TYPE_HANDLERS[bindItemTargetType]
+                    .valueFormatter(bindItemTargetValue);
+
+                const existsHiddenValue = widget(`input[name="${targetItemName}"]`);
+
+                if (existsHiddenValue) {
+                    existsHiddenValue.prop('value', formattedValue);
+                } else {
+                    const hidden = createHidden(targetItemName, formattedValue);
+                    bindItem.after(hidden);
+                }
+            });
+        })
+    }
+
     $.fn.registerWidget = function() {
         const widget = this;
 
@@ -62,6 +97,7 @@
             }
 
             prepareInputs(widget);
+            prepareBinds(widget);
         })
     };
 }(jQuery));
