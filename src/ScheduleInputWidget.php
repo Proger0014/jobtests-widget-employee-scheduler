@@ -104,11 +104,11 @@ class ScheduleInputWidget extends InputWidget
         $render = Html::beginTag('div', ['class' => 'd-flex jc-sb mt-25']);
 
         if ($this->enableSpecialTime) {
-            $render .= Html::tag('button', 'Добавить особенные дни', ['class' => 'btn btn-default']);
+            $render .= Html::tag('button', 'Добавить особенные дни', ['class' => 'btn btn-default', 'type' => 'button']);
         }
 
         if ($this->allowMultipleItems) {
-            $render .= Html::tag('button', 'Добавить рабочие часы', ['class' => 'btn btn-primary']);
+            $render .= Html::tag('button', 'Добавить рабочие часы', ['class' => 'btn btn-primary', 'type' => 'button']);
         }
 
         return $render . Html::endTag('div');
@@ -121,7 +121,7 @@ class ScheduleInputWidget extends InputWidget
             $class .= ' mr-8';
         }
 
-        return Html::tag('button', $icon, ['class' => $class]);
+        return Html::tag('button', $icon, ['class' => $class, 'type' => 'button']);
     }
 
     private function renderTimeInput(): string {
