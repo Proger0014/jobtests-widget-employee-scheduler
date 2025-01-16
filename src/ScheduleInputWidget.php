@@ -49,6 +49,8 @@ class ScheduleInputWidget extends InputWidget
 
         $render .= $this->renderTimeSection();
 
+        $render .= $this->renderButtons();
+
         $render .= Html::endTag('div');
         return $render . Html::endTag('div');
     }
@@ -91,8 +93,6 @@ class ScheduleInputWidget extends InputWidget
         $render .= Html::endTag('div');
         $render .= Html::endTag('div');
 
-        $this->renderButtons();
-
         return $render . Html::endTag('div');
     }
 
@@ -101,7 +101,7 @@ class ScheduleInputWidget extends InputWidget
             return '';
         }
 
-        $render = Html::beginTag('div', ['class' => 'd-flex jc-sb']);
+        $render = Html::beginTag('div', ['class' => 'd-flex jc-sb mt-25']);
 
         if ($this->enableSpecialTime) {
             $render .= Html::tag('button', 'Добавить особенные дни', ['class' => 'btn btn-default']);
