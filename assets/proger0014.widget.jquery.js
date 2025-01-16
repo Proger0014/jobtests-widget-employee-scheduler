@@ -87,7 +87,7 @@
         })
     }
 
-    $.fn.registerWidget = function() {
+    $.fn.registerWidget = () => {
         const widget = this;
 
         $(document).on('submit', (event) => {
