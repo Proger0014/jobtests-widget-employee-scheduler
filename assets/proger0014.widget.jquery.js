@@ -10,43 +10,49 @@
         }
     }
 
+    const TYPE_HANDLERS = {
+        switch: {
+            valueFormatter: (valueRaw) => {
+                return valueRaw
+                    ? '1' : '0';
+            },
+            domManipulator: (widget, item) => {
+                item.attr('form', null);
+                const switchInputName = item.attr(ATTRIBUTES.INPUT.NAME);
+                const existsHiddenValue = widget(`input[name="${switchInputName}"]`);
+
+                const switchVal = this.valueFormatter(item.prop('checked'));
+
+                if (existsHiddenValue) {
+                    existsHiddenValue.attr('value', switchVal);
+                } else {
+                    const hidden = createHidden(switchInputName, switchVal);
+                    item.after(hidden);
+                }
+            }
+        },
+    };
+
     function createHidden(name, value) {
         return $(`<input>`)
             .attr('hidden', null)
             .attr('name', name)
             .attr('value', value);
     }
+    
+    function prepareInputs(widget) {
+        const inputs = widget(`input[${ATTRIBUTES.INPUT.TYPE}]`);
 
-    function configureInputs(widget) {
-        const inputs = widget('input');
-        inputs.attr('form', '');
-    }
+        inputs.each((i, elem) => {
+            const jqueryItem = $(elem);
+            const type = jqueryItem.attr(ATTRIBUTES.INPUT.TYPE);
 
-    function prepareSwitches(widget) {
-        const switches = widget(`input[${ATTRIBUTES.INPUT.TYPE}="switch"]`);
-
-        switches.each((i, elem) => {
-            const switchItem = $(elem);
-
-            const switchInputName = switchItem.attr(ATTRIBUTES.INPUT.NAME);
-            const existsHiddenValue = widget(`input[name="${switchInputName}"]`);
-
-            const switchVal = switchItem.prop('checked')
-                ? '1' : '0';
-
-            if (existsHiddenValue) {
-                existsHiddenValue.attr('value', switchVal);
-            } else {
-                const hidden = createHidden(switchInputName, switchVal);
-                switchItem.after(hidden);
-            }
-        });
+            TYPE_HANDLERS[type].domManipulator(widget, jqueryItem);
+        })
     }
 
     $.fn.registerWidget = function() {
         const widget = this;
-
-        configureInputs(widget);
 
         $(document).on('submit', (event) => {
             const widgetTarget = `form#${widget.attr('widget-target')}`;
@@ -55,7 +61,7 @@
                 return;
             }
 
-            prepareSwitches(widget);
+            prepareInputs(widget);
         })
     };
 }(jQuery));
