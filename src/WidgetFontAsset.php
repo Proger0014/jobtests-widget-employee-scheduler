@@ -9,7 +9,6 @@ class WidgetFontAsset extends AssetBundle {
 
     public $css = [
         '400.css',
-        '700.css',
-        '800.css'
+        '700.css'
     ];
 }
