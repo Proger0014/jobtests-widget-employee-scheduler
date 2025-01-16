@@ -26,7 +26,7 @@
             domManipulator: (widget, item) => {
                 item.attr('form', null);
                 const switchInputName = item.attr(ATTRIBUTES.INPUT.NAME);
-                const existsHiddenValue = widget(`input[name="${switchInputName}"]`);
+                const existsHiddenValue = widget.find(`input[name="${switchInputName}"]`);
 
                 const switchVal = this.valueFormatter(item.prop('checked'));
 
@@ -52,7 +52,7 @@
         default: (widget, block) => {
             const inputContainers = block(`[${ATTRIBUTES.INPUT.CONTAINER}]`);
 
-            const buttons = block(`button[${ATTRIBUTES.BLOCK.BUTTON}]`);
+            const buttons = block.find(`button[${ATTRIBUTES.BLOCK.BUTTON}]`);
             buttons.each((i, elem) => {
                 const button = $(elem);
 
@@ -99,7 +99,7 @@
     }
 
     function prepareInputs(widget) {
-        const inputs = widget(`input[${ATTRIBUTES.INPUT.TYPE}]`);
+        const inputs = widget.find(`input[${ATTRIBUTES.INPUT.TYPE}]`);
 
         inputs.each((i, elem) => {
             const jqueryItem = $(elem);
@@ -110,7 +110,7 @@
     }
 
     function prepareBinds(widget) {
-        const bindsItems = widget(`input[${ATTRIBUTES.INPUT.BINDS}]`);
+        const bindsItems = widget.find(`input[${ATTRIBUTES.INPUT.BINDS}]`);
 
         bindsItems.each((i, elem) => {
             const bindItem = $(elem);
@@ -118,13 +118,13 @@
 
             const bindsAttrArr = bindItem.attr(ATTRIBUTES.INPUT.BINDS).split(' ');
             bindsAttrArr.forEach((bind) => {
-                const bindItemTarget = widget(`input[${ATTRIBUTES.INPUT.NAME}="${bind}"]`);
+                const bindItemTarget = widget.find(`input[${ATTRIBUTES.INPUT.NAME}="${bind}"]`);
                 const bindItemTargetValue = bindItemTarget.prop('value');
                 const bindItemTargetType = bindItemTarget.attr(ATTRIBUTES.INPUT.TYPE);
                 const formattedValue = TYPE_HANDLERS[bindItemTargetType]
                     .valueFormatter(bindItemTargetValue);
 
-                const existsHiddenValue = widget(`input[name="${targetItemName}"]`);
+                const existsHiddenValue = widget.find(`input[name="${targetItemName}"]`);
 
                 if (existsHiddenValue) {
                     existsHiddenValue.prop('value', formattedValue);
@@ -137,7 +137,7 @@
     }
 
     function configureDefaultBlock(widget) {
-        const defaultBlock = widget(`[${ATTRIBUTES.BLOCK.ATTR}="default"]`);
+        const defaultBlock = widget.find(`[${ATTRIBUTES.BLOCK.ATTR}="default"]`);
         BLOCK_HANDLERS.default(widget, defaultBlock);
     }
 
