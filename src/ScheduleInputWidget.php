@@ -39,7 +39,7 @@ class ScheduleInputWidget extends InputWidget
 
         $id = uniqid('widget-');
 
-        $this->view->registerJs('$(#' . $id . ').registerWidget();' . '\n');
+        $this->view->registerJs('$("#' . $id . '").registerWidget();');
 
         $render = Html::beginTag('div', ['class' => 'widget panel panel-default', 'id' => $id]);
         $render .= Html::beginTag('div', ['class' => 'panel-body']);
