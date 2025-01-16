@@ -4,7 +4,6 @@ namespace proger0014\yii2;
 
 use proger0014\yii2\model\ScheduleModel;
 use yii\base\InvalidArgumentException;
-use yii\bootstrap\Button;
 use yii\bootstrap\InputWidget;
 use yii\helpers\Html;
 
@@ -36,6 +35,8 @@ class ScheduleInputWidget extends InputWidget
     }
 
     public function run(): string {
+        WidgetAsset::register($this->view);
+
         $render = Html::beginTag('div', ['class' => 'widget panel panel-default']);
         $render .= Html::beginTag('div', ['class' => 'panel-body']);
 
