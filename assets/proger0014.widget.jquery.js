@@ -8,6 +8,11 @@
             TYPE: `${this._base_name_input}-type`,
             BINDS: `${this._base_name_input}-binds`,
             NAME: `${this._base_name_input}-name`,
+        },
+        BLOCK: {
+            _base_name_block: `${this._base_name}-block`,
+            TIME: `${this._base_name_block}-time`,
+            TIME_BUTTON: `${this._base_name_block}-time-button`
         }
     }
 
