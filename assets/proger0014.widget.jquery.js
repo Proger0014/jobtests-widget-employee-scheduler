@@ -8,6 +8,7 @@
             TYPE: `${this._base_name_input}-type`,
             BINDS: `${this._base_name_input}-binds`,
             NAME: `${this._base_name_input}-name`,
+            CONTAINER: `${this._base_name_input}-container`
         },
         BLOCK: {
             _base_name_block: `${this._base_name}-block`,
@@ -46,6 +47,49 @@
             }
         }
     };
+
+    const BLOCK_HANDLERS = {
+        default: (widget, block) => {
+            const inputContainers = block(`[${ATTRIBUTES.INPUT.CONTAINER}]`);
+
+            const buttons = block(`button[${ATTRIBUTES.BLOCK.BUTTON}]`);
+            buttons.each((i, elem) => {
+                const button = $(elem);
+
+                const buttonType = button.attr(ATTRIBUTES.BLOCK.BUTTON);
+
+                switch (buttonType) {
+                    case 'edit':
+                        configureEditButton(button, inputContainers);
+                        break;
+                    case 'delete':
+                        configureRemoveButton(button, inputContainers);
+                        break;
+                }
+            })
+        }
+    };
+
+    function configureRemoveButton(button, target) {
+        button.on('click', () => {
+            target.forEach((item) => {
+                // TODO
+            });
+        })
+    }
+
+    function configureEditButton(button, target) {
+        button.on('click', () => {
+            target.forEach((item) => {
+                disableInputToggle(item);
+            });
+        })
+    }
+
+    function disableInputToggle(inputContainer) {
+        inputContainer.toggleClass('disabled');
+        inputContainer('input').get(0).toggleAttribute('disabled');
+    }
 
     function createHidden(name, value) {
         return $(`<input>`)
@@ -92,8 +136,15 @@
         })
     }
 
+    function configureDefaultBlock(widget) {
+        const defaultBlock = widget(`[${ATTRIBUTES.BLOCK.ATTR}="default"]`);
+        BLOCK_HANDLERS.default(widget, defaultBlock);
+    }
+
     $.fn.registerWidget = () => {
         const widget = this;
+
+        configureDefaultBlock(widget);
 
         $(document).on('submit', (event) => {
             const widgetTarget = `form#${widget.attr(ATTRIBUTES.TARGET)}`;
