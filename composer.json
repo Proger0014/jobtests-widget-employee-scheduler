@@ -3,6 +3,7 @@
   "description": "Widget Scheduler extension for yii2",
   "keywords": ["yii2", "widget", "jobtests"],
   "type": "yii2-extension",
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "proger0014\\yii2\\": "src"
