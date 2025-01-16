@@ -37,7 +37,11 @@ class ScheduleInputWidget extends InputWidget
     public function run(): string {
         WidgetAsset::register($this->view);
 
-        $render = Html::beginTag('div', ['class' => 'widget panel panel-default']);
+        $id = uniqid('widget-');
+
+        $this->view->registerJs('$(#' . $id . ').registerWidget();' . '\n');
+
+        $render = Html::beginTag('div', ['class' => 'widget panel panel-default', 'id' => $id]);
         $render .= Html::beginTag('div', ['class' => 'panel-body']);
 
         $render .= Html::tag('p', 'Рабочие часы', ['class' => 'title-1']);

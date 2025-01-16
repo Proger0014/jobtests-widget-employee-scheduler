@@ -14,6 +14,10 @@ class WidgetAsset extends AssetBundle
         'proger0014.widget.css'
     ];
 
+    public $js = [
+        'proger0014.widget.jquery.js'
+    ];
+
     public $depends = [
         WidgetFontAsset::class,
         BootstrapAsset::class,
