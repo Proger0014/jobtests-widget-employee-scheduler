@@ -1,5 +1,5 @@
-/tests
-/vendor
-/scripts
-/*phpunit*
-/composer.lock
+/tests          export-ignore
+/vendor         export-ignore
+/scripts        export-ignore
+/*phpunit*      export-ignore
+/composer.lock  export-ignore
