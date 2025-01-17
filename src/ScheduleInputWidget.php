@@ -103,8 +103,8 @@ class ScheduleInputWidget extends InputWidget
         $render .= Html::endTag('div');
 
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb']);
-        $render .= $this->renderIconButton('1');
-        $render .= $this->renderIconButton('2', false);
+        $render .= $this->renderIconButton('1', 'edit');
+        $render .= $this->renderIconButton('2', 'delete', false);
         $render .= Html::endTag('div');
 
         $render .= Html::endTag('div');
@@ -134,14 +134,14 @@ class ScheduleInputWidget extends InputWidget
         return $render . Html::endTag('div');
     }
 
-    private function renderIconButton($icon, bool $withMr = true): string {
+    private function renderIconButton($icon, string $buttonType, bool $withMr = true, ): string {
         $class = 'btn btn-icon';
 
         if ($withMr) {
             $class .= ' mr-8';
         }
 
-        return Html::tag('button', $icon, ['class' => $class, 'type' => 'button']);
+        return Html::tag('button', $icon, ['class' => $class, 'type' => 'button', 'widget-block-button' => $buttonType]);
     }
 
     private function renderTimeInput(string $name): string {
