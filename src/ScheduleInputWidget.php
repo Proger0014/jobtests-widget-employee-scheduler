@@ -74,23 +74,32 @@ class ScheduleInputWidget extends InputWidget
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb ai-center']);
 
         $render .= Html::beginTag('div', ['class' => 'd-flex']);
-        $render .= $this->renderDayInput('Пн', 0);
-        $render .= $this->renderDayInput('Вт', 1);
-        $render .= $this->renderDayInput('Ср', 2);
-        $render .= $this->renderDayInput('Чт', 3);
-        $render .= $this->renderDayInput('Пт', 4);
-        $render .= $this->renderDayInput('Сб', 5);
-        $render .= $this->renderDayInput('Вс', 6);
+
+        $startTimeName = 'start_time';
+        $endTimeName = 'end_time';
+
+        $binds = [
+            $startTimeName . '(' . $this->getBaseName() . "[work_time][{index}][$startTimeName])",
+            $endTimeName . '(' . $this->getBaseName() . "[work_time][{index}][$endTimeName])"
+        ];
+
+        $render .= $this->renderDayInput('Пн', 0, $binds);
+        $render .= $this->renderDayInput('Вт', 1, $binds);
+        $render .= $this->renderDayInput('Ср', 2, $binds);
+        $render .= $this->renderDayInput('Чт', 3, $binds);
+        $render .= $this->renderDayInput('Пт', 4, $binds);
+        $render .= $this->renderDayInput('Сб', 5, $binds);
+        $render .= $this->renderDayInput('Вс', 6,$binds);
         $render .= Html::endTag('div');
 
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb ai-center']);
 
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb']);
-        $render .= $this->renderTimeInput();
+        $render .= $this->renderTimeInput($startTimeName);
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-center ai-center mx-5']);
         $render .= Html::tag('hr', null, ['class' => 'straight']);
         $render .= Html::endTag('div');
-        $render .= $this->renderTimeInput();
+        $render .= $this->renderTimeInput($endTimeName);
         $render .= Html::endTag('div');
 
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb']);
@@ -135,19 +144,30 @@ class ScheduleInputWidget extends InputWidget
         return Html::tag('button', $icon, ['class' => $class, 'type' => 'button']);
     }
 
-    private function renderTimeInput(): string {
-        $render = Html::beginTag('div', ['class' => 'form-group']);
+    private function renderTimeInput(string $name): string {
+        $render = Html::beginTag('div', ['class' => 'form-group', 'input-container']);
         $render .= Html::input('time', null, '00:00', [
             'min' => '00:00',
             'max' => '23:59',
-            'class' => 'form-control']);
+            'class' => 'form-control',
+            'widget-input-type' => 'time',
+            'widget-input-name' => $name]);
         return $render . Html::endTag('div');
     }
 
-    private function renderDayInput(string $content, int $index): string {
-        $render = Html::beginTag('label', ['class' => 'day']);
+    private function renderDayInput(string $content, int $index, array $binds): string {
+        $render = Html::beginTag('label', ['class' => 'day form-group', 'input-container']);
 
-        $render .= Html::checkbox($this->getBaseName() . "[work_time][$index][day]");
+        $bindsStr = trim(array_reduce($binds, function($total, $bind) use ($index) {
+            $bindFormatted = str_replace('{index}', $index, $bind);
+
+            $total .= ' ' . $bindFormatted;
+        }, ''));
+
+        $render .= Html::checkbox(null, false, [
+            'widget-input-type' => 'switch-day-of-week',
+            'widget-input-binds' => $bindsStr
+        ]);
         $render .= Html::tag('span', $content);
 
         return $render . Html::endTag('label');
