@@ -94,7 +94,7 @@
 затем скачать зависимость:
 
 ```cmd
-composer require "proger0014/jobtest-widget-scheduler:1.0.0-BETA"
+composer require "proger0014/jobtest-widget-scheduler:1.0.2-BETA"
 ```
 
 **Возможные проблемы**
