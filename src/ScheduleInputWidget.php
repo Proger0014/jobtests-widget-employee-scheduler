@@ -104,7 +104,7 @@ class ScheduleInputWidget extends InputWidget
 
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb']);
         $render .= $this->renderIconButton('1', 'edit');
-        $render .= $this->renderIconButton('2', 'apply');
+        $render .= $this->renderIconButton('2', 'apply', false);
         $render .= $this->renderIconButton('3', 'reset', false, false);
         $render .= $this->renderIconButton('4', 'delete', true, false);
         $render .= Html::endTag('div');
