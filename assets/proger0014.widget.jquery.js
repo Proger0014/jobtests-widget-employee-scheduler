@@ -159,7 +159,7 @@
     }
 
     $.fn.registerWidget = () => {
-        const widget = this;
+        const widget = $(this);
 
         configureDefaultBlock(widget);
 
