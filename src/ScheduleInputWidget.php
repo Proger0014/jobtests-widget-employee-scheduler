@@ -145,7 +145,7 @@ class ScheduleInputWidget extends InputWidget
     }
 
     private function renderTimeInput(string $name): string {
-        $render = Html::beginTag('div', ['class' => 'form-group', 'input-container' => null]);
+        $render = Html::beginTag('div', ['class' => 'form-group', 'input-container' => '']);
         $render .= Html::input('time', null, '00:00', [
             'min' => '00:00',
             'max' => '23:59',
@@ -156,7 +156,7 @@ class ScheduleInputWidget extends InputWidget
     }
 
     private function renderDayInput(string $content, int $index, array $binds): string {
-        $render = Html::beginTag('label', ['class' => 'day form-group', 'input-container' => null]);
+        $render = Html::beginTag('label', ['class' => 'day form-group', 'input-container' => '']);
 
         $bindsStr = trim(array_reduce($binds, function($total, $bind) use ($index) {
             $bindFormatted = str_replace('{index}', $index, $bind);
