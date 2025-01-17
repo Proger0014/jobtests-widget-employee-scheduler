@@ -69,7 +69,7 @@ class ScheduleInputWidget extends InputWidget
     private function renderTimeSection(): string {
         $render = Html::beginTag('div', ['class' => 'time-list mb-25']);
 
-        $render .= Html::beginTag('div', ['class' => 'item panel panel-default border']);
+        $render .= Html::beginTag('div', ['class' => 'item panel panel-default border', 'widget-block' => 'default']);
         $render .= Html::beginTag('div', ['class' => 'panel-body']);
         $render .= Html::beginTag('div', ['class' => 'd-flex jc-sb ai-center']);
 
