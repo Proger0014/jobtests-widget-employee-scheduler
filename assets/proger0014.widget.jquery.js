@@ -47,7 +47,7 @@
 
                     const switchVal = valueFormatter(item.prop('checked'));
 
-                    if (existsHiddenValue) {
+                    if (existsHiddenValue.length > 0) {
                         existsHiddenValue.attr('value', switchVal);
                     } else {
                         const hidden = createHidden(switchInputName, switchVal);
@@ -202,7 +202,7 @@
 
                 const existsHiddenValue = widget.find(`input[name="${bindItemName}"]`);
 
-                if (existsHiddenValue) {
+                if (existsHiddenValue.length > 0) {
                     existsHiddenValue.prop('value', formattedValue);
                 } else {
                     const hidden = createHidden(bindItemName, formattedValue);
