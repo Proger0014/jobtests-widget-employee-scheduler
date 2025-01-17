@@ -61,6 +61,20 @@
             },
             domManipulator: (widget, item) => {
                 item.attr('form', null);
+            },
+            reset: (widget, item) => {
+                item.val('00:00');
+            }
+        },
+        'switch-day-of-week': {
+            valueFormatter: (valueRaw) => {
+                return valueRaw;
+            },
+            domManipulator: (widget, item) => {
+                item.attr('form', null);
+            },
+            reset: (widget, item) => {
+                item.prop('checked', false);
             }
         }
     };
@@ -77,10 +91,16 @@
 
                 switch (buttonType) {
                     case 'edit':
-                        configureEditButton(button, inputContainers);
+                        configureEditButton(buttons, button, inputContainers);
                         break;
                     case 'delete':
-                        configureRemoveButton(button, inputContainers);
+                        configureRemoveButton(button, block);
+                        break;
+                    case 'reset':
+                        configureResetButton(button, inputContainers);
+                        break;
+                    case 'apply':
+                        configureApplyButton(buttons, button, inputContainers);
                         break;
                 }
             })
@@ -89,18 +109,48 @@
 
     function configureRemoveButton(button, target) {
         button.on('click', () => {
-            target.forEach((item) => {
-                // TODO
-            });
-        })
+            target.remove();
+        });
     }
 
-    function configureEditButton(button, target) {
+    function configureEditButton(buttons, button, target) {
         button.on('click', () => {
+            toggleButtonTypes(buttons);
             target.each((i, item) => {
                 disableInputToggle($(item));
             });
         })
+    }
+
+    function configureResetButton(button, target) {
+        button.on('click', () => {
+            target.each((i, item) => {
+                const itemJq = $(item);
+                const input = itemJq.find('input');
+                TYPE_HANDLERS[input.attr(ATTRIBUTES.INPUT.TYPE)].reset(null, input);
+            });
+        });
+    }
+
+    function toggleButtonTypes(buttons) {
+        buttons.each((i, elem) => {
+            const button = $(elem);
+            if (button.hasClass('none')) {
+                button.removeClass('none');
+            } else {
+                button.addClass('none');
+            }
+        });
+    }
+
+    function configureApplyButton(buttons, button, target) {
+        button.on('click', () => {
+            target.each((i, item) => {
+
+            });
+
+            toggleButtonTypes(buttons);
+        });
     }
 
     function disableInputToggle(inputContainer) {
