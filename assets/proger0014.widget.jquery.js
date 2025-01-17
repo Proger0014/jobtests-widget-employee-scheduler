@@ -146,9 +146,8 @@
     function configureApplyButton(buttons, button, target) {
         button.on('click', () => {
             target.each((i, item) => {
-
+                disableInputToggle($(item));
             });
-
             toggleButtonTypes(buttons);
         });
     }
