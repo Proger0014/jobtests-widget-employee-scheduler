@@ -54,7 +54,7 @@
                         item.after(hidden);
                     }
                 },
-                allowBinds: (widget, item) => true
+                allowPrepare: (widget, item) => true
             };
         }
 
@@ -70,7 +70,7 @@
                 reset: (widget, item) => {
                     item.val('00:00');
                 },
-                allowBinds: (widget, item) => true
+                allowPrepare: (widget, item) => true
             },
             'switch-day-of-week': {
                 valueFormatter: (valueRaw) => {
@@ -82,7 +82,7 @@
                 reset: (widget, item) => {
                     item.prop('checked', false);
                 },
-                allowBinds: (widget, item) => {
+                allowPrepare: (widget, item) => {
                     return item.prop('checked');
                 }
             }
@@ -183,7 +183,7 @@
         inputs.each((i, elem) => {
             const jqueryItem = $(elem);
             const type = jqueryItem.attr(ATTRIBUTES.INPUT.TYPE);
-
+            if (!TYPE_HANDLERS[type].allowPrepare(widget, jqueryItem)) return;
             TYPE_HANDLERS[type].domManipulator(widget, jqueryItem);
         })
     }
@@ -195,7 +195,7 @@
             const bindItem = $(elem);
             const type = bindItem.attr(ATTRIBUTES.INPUT.TYPE);
 
-            if (!TYPE_HANDLERS[type].allowBinds(widget, bindItem)) return;
+            if (!TYPE_HANDLERS[type].allowPrepare(widget, bindItem)) return;
 
             const targetItemName = bindItem.attr(ATTRIBUTES.INPUT.BINDS);
 
