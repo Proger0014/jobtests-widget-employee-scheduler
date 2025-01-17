@@ -182,7 +182,7 @@
             const bindItem = $(elem);
             const targetItemName = bindItem.attr(ATTRIBUTES.INPUT.NAME);
 
-            const bindsAttrArr = bindItem.attr(ATTRIBUTES.INPUT.BINDS).split(' ');
+            const bindsAttrArr = targetItemName.split(' ');
             bindsAttrArr.forEach((bind) => {
                 const bindItemTargetName = bind.substring(0, bind.indexOf('('));
                 const bindItemName = bind.substring(bind.indexOf('('), bind.indexOf(')'));
