@@ -55,7 +55,7 @@ EXIT /B 0
 
 @REM %~1 - tag name
 :push_tags
-if ("%~1" != "") (
+if not "%~1" == "" (
     CALL git push origin tag "%~1"
 )
 EXIT /B 0
