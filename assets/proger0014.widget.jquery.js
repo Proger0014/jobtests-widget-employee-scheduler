@@ -193,7 +193,7 @@
             const bindsAttrArr = targetItemName.split(' ');
             bindsAttrArr.forEach((bind) => {
                 const bindItemTargetName = bind.substring(0, bind.indexOf('('));
-                const bindItemName = bind.substring(bind.indexOf('('), bind.indexOf(')'));
+                const bindItemName = bind.substring(bind.indexOf('(') + 1, bind.indexOf(')'));
                 const bindItemTarget = widget.find(`input[${ATTRIBUTES.INPUT.NAME}="${bindItemTargetName}"]`);
                 const bindItemTargetValue = bindItemTarget.prop('value');
                 const bindItemTargetType = bindItemTarget.attr(ATTRIBUTES.INPUT.TYPE);
