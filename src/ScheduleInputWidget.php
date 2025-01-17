@@ -174,7 +174,9 @@ class ScheduleInputWidget extends InputWidget
 
         $render .= Html::checkbox(null, false, [
             'widget-input-type' => 'switch-day-of-week',
-            'widget-input-binds' => $bindsStr
+            'widget-input-binds' => $bindsStr,
+            'widget-input-name' => $this->getBaseName() . "[work_time][$index][day]",
+            'value' => $index + 1
         ]);
         $render .= Html::tag('span', $content);
 
