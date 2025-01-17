@@ -188,8 +188,6 @@ class ScheduleInputWidget extends InputWidget
 
         $render .= Html::beginTag('div');
         $render .= Html::tag('label', $label);
-        // TODO icon
-        $render .= Html::tag('span', 'icon');
         $render .= Html::endTag('div');
 
         if ($enabled) {
