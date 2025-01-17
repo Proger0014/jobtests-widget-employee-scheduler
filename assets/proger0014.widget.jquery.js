@@ -184,18 +184,20 @@
 
             const bindsAttrArr = bindItem.attr(ATTRIBUTES.INPUT.BINDS).split(' ');
             bindsAttrArr.forEach((bind) => {
-                const bindItemTarget = widget.find(`input[${ATTRIBUTES.INPUT.NAME}="${bind}"]`);
+                const bindItemTargetName = bind.substring(0, bind.indexOf('('));
+                const bindItemName = bind.substring(bind.indexOf('('), bind.indexOf(')'));
+                const bindItemTarget = widget.find(`input[${ATTRIBUTES.INPUT.NAME}="${bindItemTargetName}"]`);
                 const bindItemTargetValue = bindItemTarget.prop('value');
                 const bindItemTargetType = bindItemTarget.attr(ATTRIBUTES.INPUT.TYPE);
                 const formattedValue = TYPE_HANDLERS[bindItemTargetType]
                     .valueFormatter(bindItemTargetValue);
 
-                const existsHiddenValue = widget.find(`input[name="${targetItemName}"]`);
+                const existsHiddenValue = widget.find(`input[name="${bindItemName}"]`);
 
                 if (existsHiddenValue) {
                     existsHiddenValue.prop('value', formattedValue);
                 } else {
-                    const hidden = createHidden(targetItemName, formattedValue);
+                    const hidden = createHidden(bindItemName, formattedValue);
                     bindItem.after(hidden);
                 }
             });
