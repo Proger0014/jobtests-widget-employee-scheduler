@@ -97,15 +97,17 @@
 
     function configureEditButton(button, target) {
         button.on('click', () => {
-            target.forEach((item) => {
+            target.each((i, item) => {
                 disableInputToggle(item);
             });
         })
     }
 
     function disableInputToggle(inputContainer) {
+        const inputContainerJqObj = $(inputContainer);
+
         inputContainer.toggleClass('disabled');
-        inputContainer('input').get(0).toggleAttribute('disabled');
+        inputContainerJqObj.find('input').get(0).toggleAttribute('disabled');
     }
 
     function createHidden(name, value) {
