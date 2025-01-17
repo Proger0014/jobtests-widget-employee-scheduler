@@ -162,6 +162,8 @@ class ScheduleInputWidget extends InputWidget
             $bindFormatted = str_replace('{index}', $index, $bind);
 
             $total .= ' ' . $bindFormatted;
+
+            return $total;
         }, ''));
 
         $render .= Html::checkbox(null, false, [
