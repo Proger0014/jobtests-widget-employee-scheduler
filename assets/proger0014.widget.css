@@ -82,6 +82,10 @@
     margin: 0;
 }
 
+.widget .time-list .item .panel-body .form-group {
+    margin: 0;
+}
+
 .widget .day {
     display: flex;
     justify-content: center;
