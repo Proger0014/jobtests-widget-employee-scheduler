@@ -184,7 +184,7 @@ class ScheduleInputWidget extends InputWidget
     }
 
     private function renderSwitchSection(string $label, string $name, bool $enabled): string {
-        $render = Html::beginTag('div', ['class' => 'd-flex jc-sb']);
+        $render = Html::beginTag('div', ['class' => 'd-flex jc-sb mb-25']);
 
         $render .= Html::beginTag('div');
         $render .= Html::tag('label', $label);
