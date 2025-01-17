@@ -51,9 +51,15 @@
     outline: none;
 }
 
+.widget .btn.btn-default,
+.widget .btn.btn-primary {
+    border-radius: 10px;
+}
+
 .widget .btn.btn-primary {
     color: var(--c-white);
     background-color: var(--c-green);
+    border-color: transparent;
 }
 
 .widget .btn.btn-default {
@@ -72,11 +78,18 @@
     width: 10px;
 }
 
+.widget .day label {
+    margin: 0;
+}
+
 .widget .day {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     cursor: pointer;
     user-select: none;
+    margin: 0;
 
     --d-size: 25px;
     --d-bg: var(--c-disable-gray);
