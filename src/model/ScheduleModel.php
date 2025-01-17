@@ -21,8 +21,8 @@ class ScheduleModel extends Model {
 
     public function rules(): array {
         return [
-            [['name'], 'required'],
-            [['enableTimeZone', 'enableProductionCalendar', 'enableSpecialTime'], 'boolean']
+            [['workTime', 'specialTime'], 'default'],
+            [['enableTimeZone', 'enableProductionCalendar'], 'boolean']
         ];
     }
 }
