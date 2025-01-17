@@ -32,52 +32,60 @@
         }
     }
 
-    const ATTRIBUTES = _attribues();
+    function _typeHandlers() {
+        function switchFn() {
+            const valueFormatter = (valueRaw) => {
+                return valueRaw ? '1' : '0';
+            }
 
-    const TYPE_HANDLERS = {
-        switch: {
-            valueFormatter: (valueRaw) => {
-                return valueRaw
-                    ? '1' : '0';
+            return {
+                valueFormatter: valueFormatter,
+                domManipulator: (widget, item) => {
+                    item.attr('form', null);
+                    const switchInputName = item.attr(ATTRIBUTES.INPUT.NAME);
+                    const existsHiddenValue = widget.find(`input[name="${switchInputName}"]`);
+
+                    const switchVal = valueFormatter(item.prop('checked'));
+
+                    if (existsHiddenValue) {
+                        existsHiddenValue.attr('value', switchVal);
+                    } else {
+                        const hidden = createHidden(switchInputName, switchVal);
+                        item.after(hidden);
+                    }
+                }
+            };
+        }
+
+        return {
+            switch: switchFn(),
+            time: {
+                valueFormatter: (valueRaw) => {
+                    return `${valueRaw}:00`
+                },
+                domManipulator: (widget, item) => {
+                    item.attr('form', null);
+                },
+                reset: (widget, item) => {
+                    item.val('00:00');
+                }
             },
-            domManipulator: (widget, item) => {
-                item.attr('form', null);
-                const switchInputName = item.attr(ATTRIBUTES.INPUT.NAME);
-                const existsHiddenValue = widget.find(`input[name="${switchInputName}"]`);
-
-                const switchVal = this.valueFormatter(item.prop('checked'));
-
-                if (existsHiddenValue) {
-                    existsHiddenValue.attr('value', switchVal);
-                } else {
-                    const hidden = createHidden(switchInputName, switchVal);
-                    item.after(hidden);
+            'switch-day-of-week': {
+                valueFormatter: (valueRaw) => {
+                    return valueRaw;
+                },
+                domManipulator: (widget, item) => {
+                    item.attr('form', null);
+                },
+                reset: (widget, item) => {
+                    item.prop('checked', false);
                 }
             }
-        },
-        time: {
-            valueFormatter: (valueRaw) => {
-                return `${valueRaw}:00`
-            },
-            domManipulator: (widget, item) => {
-                item.attr('form', null);
-            },
-            reset: (widget, item) => {
-                item.val('00:00');
-            }
-        },
-        'switch-day-of-week': {
-            valueFormatter: (valueRaw) => {
-                return valueRaw;
-            },
-            domManipulator: (widget, item) => {
-                item.attr('form', null);
-            },
-            reset: (widget, item) => {
-                item.prop('checked', false);
-            }
-        }
-    };
+        };
+    }
+
+    const ATTRIBUTES = _attribues();
+    const TYPE_HANDLERS = _typeHandlers();
 
     const BLOCK_HANDLERS = {
         default: (widget, block) => {
