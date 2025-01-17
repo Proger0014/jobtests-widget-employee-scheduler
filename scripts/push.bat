@@ -1,6 +1,7 @@
 @echo off
 
 set arg1=%~1
+set arg2=%~2
 
 if "%arg1%" == "" (
   goto without_commit
@@ -13,15 +14,19 @@ SET comment=%1
 CALL :github_setting
 CALL :commit %comment%
 CALL :push
+CALL :push_tags %arg2%
 CALL :gitlab_settings
 CALL :push
+CALL :push_tags %arg2%
 EXIT /B 0
 
 :without_commit
 CALL :github_setting
 CALL :push
+CALL :push_tags %arg2%
 CALL :gitlab_settings
 CALL :push
+CALL :push_tags %arg2%
 EXIT /B 0
 
 
@@ -46,6 +51,13 @@ EXIT /B 0
 
 :push
 CALL git push -u origin main
+EXIT /B 0
+
+@REM %~1 - tag name
+:push_tags
+if ("%~1" != "") (
+    CALL git push origin tag "%~1"
+)
 EXIT /B 0
 
 @REM %~1 - comment
