@@ -1,0 +1,5 @@
+/tests
+/vendor
+/scripts
+/*phpunit*
+/composer.lock
