@@ -167,7 +167,7 @@
 
     function createHidden(name, value) {
         return $(`<input>`)
-            .attr('hidden', null)
+            .attr('hidden', '')
             .attr('name', name)
             .attr('value', value);
     }
