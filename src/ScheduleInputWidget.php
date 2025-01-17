@@ -34,6 +34,7 @@ class ScheduleInputWidget extends InputWidget
         return $this->model->formName() . "[$this->attribute]";
     }
 
+    // TODO: update tags for js
     public function run(): string {
         WidgetAsset::register($this->view);
 
@@ -41,7 +42,13 @@ class ScheduleInputWidget extends InputWidget
 
         $this->view->registerJs('$("#' . $id . '").registerWidget();');
 
-        $render = Html::beginTag('div', ['class' => 'widget panel panel-default', 'id' => $id]);
+        $containerOptions = ['class' => 'widget panel panel-default', 'id' => $id];
+
+        if ($this->field) {
+            $containerOptions['widget-target'] = $this->field->form->options['id'];
+        }
+
+        $render = Html::beginTag('div', $containerOptions);
         $render .= Html::beginTag('div', ['class' => 'panel-body']);
 
         $render .= Html::tag('p', 'Рабочие часы', ['class' => 'title-1']);
