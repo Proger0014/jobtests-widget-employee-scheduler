@@ -55,8 +55,8 @@ class ScheduleInputWidget extends InputWidget
         $render .= Html::tag('p', 'Установить рабочие часы');
         $render .= Html::tag('hr', null, ['class' => 'mb-25']);
 
-        $render .= $this->renderSwitchSection('Учитывать часовой пояс', 'icon', $this->enableTimeZone);
-        $render .= $this->renderSwitchSection('Производственный календарь', 'icon', $this->enableProductionCalendar);
+        $render .= $this->renderSwitchSection('Учитывать часовой пояс', $this->getBaseName() . '[enable_time_zone]', $this->enableTimeZone);
+        $render .= $this->renderSwitchSection('Производственный календарь', $this->getBaseName() . '[enable_production_calendar]', $this->enableProductionCalendar);
 
         $render .= $this->renderTimeSection();
 
@@ -153,25 +153,26 @@ class ScheduleInputWidget extends InputWidget
         return $render . Html::endTag('label');
     }
 
-    private function renderSwitchSection(string $label, $icon, bool $enabled): string {
+    private function renderSwitchSection(string $label, string $name, bool $enabled): string {
         $render = Html::beginTag('div', ['class' => 'd-flex jc-sb']);
 
         $render .= Html::beginTag('div');
         $render .= Html::tag('label', $label);
         // TODO icon
-        $render .= Html::tag('span', $icon);
+        $render .= Html::tag('span', 'icon');
         $render .= Html::endTag('div');
 
         if ($enabled) {
-            $render .= $this->renderSwitch();
+            $render .= $this->renderSwitch($name);
         }
 
         return $render . Html::endTag('div');
     }
 
-    private function renderSwitch(): string {
+    private function renderSwitch($name): string {
         return Html::checkbox(null, false, [
-            'form' => ''
+            'widget-input-type' => 'switch',
+            'widget-input-name' => $name
         ]);
     }
 
