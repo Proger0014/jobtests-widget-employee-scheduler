@@ -1,21 +1,38 @@
 (function ($) {
 
-    const ATTRIBUTES = {
-        _base_name: 'widget',
-        TARGET: `${this._base_name}-target`,
-        INPUT: {
-            _base_name_input: `${this._base_name}-input`,
-            TYPE: `${this._base_name_input}-type`,
-            BINDS: `${this._base_name_input}-binds`,
-            NAME: `${this._base_name_input}-name`,
-            CONTAINER: `${this._base_name_input}-container`
-        },
-        BLOCK: {
-            _base_name_block: `${this._base_name}-block`,
-            ATTR: this._base_name_block,
-            BUTTON: `${this._base_name_block}-button`
+    function _attribues() {
+        const baseName = 'widget';
+
+        const target = `${baseName}-target`;
+
+        function input(base) {
+            const baseName = `${base}-input`;
+
+            return {
+                TYPE: `${baseName}-type`,
+                BINDS: `${baseName}-binds`,
+                NAME: `${baseName}-name`,
+                CONTAINER: `${baseName}-container`
+            };
+        }
+
+        function block(base) {
+            const baseName = `${base}-block`;
+
+            return {
+                ATTR: `${baseName}`,
+                BUTTON: `${baseName}-button`
+            };
+        }
+
+        return {
+            TARGET: target,
+            INPUT: input(baseName),
+            BLOCK: block(baseName)
         }
     }
+
+    const ATTRIBUTES = _attribues();
 
     const TYPE_HANDLERS = {
         switch: {
