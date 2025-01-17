@@ -158,7 +158,7 @@
         BLOCK_HANDLERS.default(widget, defaultBlock);
     }
 
-    $.fn.registerWidget = () => {
+    $.fn.registerWidget = function () {
         const widget = $(this);
 
         configureDefaultBlock(widget);
