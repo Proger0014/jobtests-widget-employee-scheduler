@@ -14,3 +14,94 @@
 
     font: var(--f-base);
 }
+
+.widget .d-flex {
+    display: flex;
+}
+
+.widget .jc-sb {
+    justify-content: space-between;
+}
+
+.widget .jc-center {
+    justify-content: center;
+}
+
+.widget .ai-center {
+    align-items: center;
+}
+
+.widget .mb-25 {
+    margin-bottom: 25px;
+}
+
+.widget .mr-8 {
+    margin-right: 8px;
+}
+
+.widget .none {
+    display: none;
+}
+
+.widget .btn.btn-icon {
+    background: none;
+}
+
+.widget .btn {
+    outline: none;
+}
+
+.widget .btn.btn-primary {
+    color: var(--c-white);
+    background-color: var(--c-green);
+}
+
+.widget .btn.btn-default {
+    color: var(--c-green);
+    background: none;
+    border: 1px dashed var(--c-green);
+}
+
+.widget hr.straight {
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    background: var(--c-black);
+    opacity: .5;
+    width: 10px;
+}
+
+.widget .day {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+    --d-size: 25px;
+    --d-bg: var(--c-disable-gray);
+
+    border-radius: 50%;
+    width: var(--d-size);
+    height: var(--d-size);
+    background-color: var(--d-bg);
+}
+
+.widget .day input {
+    position: absolute;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+}
+
+.widget .day:has(input:checked) {
+    --d-bg: var(--c-green)
+}
+
+.widget .disabled {
+    opacity: .5;
+}
+
+.widget .title-1 {
+    font-size: var(--f-title-1);
+}
