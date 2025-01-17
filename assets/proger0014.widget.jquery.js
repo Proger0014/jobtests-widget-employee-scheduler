@@ -53,7 +53,8 @@
                         const hidden = createHidden(switchInputName, switchVal);
                         item.after(hidden);
                     }
-                }
+                },
+                allowBinds: (widget, item) => true
             };
         }
 
@@ -68,7 +69,8 @@
                 },
                 reset: (widget, item) => {
                     item.val('00:00');
-                }
+                },
+                allowBinds: (widget, item) => true
             },
             'switch-day-of-week': {
                 valueFormatter: (valueRaw) => {
@@ -79,6 +81,9 @@
                 },
                 reset: (widget, item) => {
                     item.prop('checked', false);
+                },
+                allowBinds: (widget, item) => {
+                    return item.prop('checked');
                 }
             }
         };
@@ -188,6 +193,10 @@
 
         bindsItems.each((i, elem) => {
             const bindItem = $(elem);
+            const type = bindItem.attr(ATTRIBUTES.INPUT.TYPE);
+
+            if (!TYPE_HANDLERS[type].allowBinds(widget, bindItem)) return;
+
             const targetItemName = bindItem.attr(ATTRIBUTES.INPUT.BINDS);
 
             const bindsAttrArr = targetItemName.split(' ');
