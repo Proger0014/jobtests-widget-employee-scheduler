@@ -236,14 +236,18 @@
         configureDefaultBlock(widget);
 
         $(document).on('submit', (event) => {
-            const widgetTarget = `form#${widget.attr(ATTRIBUTES.TARGET)}`;
+            const widgetTargetAttr = widget.attr(ATTRIBUTES.TARGET);
 
-            if (widgetTarget !== 'form#' + $(event.target).attr('id')) {
-                return;
+            if (widgetTargetAttr) {
+                const widgetTarget = `form#${widget.attr(ATTRIBUTES.TARGET)}`;
+
+                if (widgetTarget !== 'form#' + $(event.target).attr('id')) {
+                    return;
+                }
             }
 
             prepareInputs(widget);
             prepareBinds(widget);
-        })
+        });
     };
 }(jQuery));
