@@ -217,7 +217,7 @@
         $(document).on('submit', (event) => {
             const widgetTarget = `form#${widget.attr(ATTRIBUTES.TARGET)}`;
 
-            if (widgetTarget !== event.target) {
+            if (widgetTarget !== 'form#' + $(event.target).attr('id')) {
                 return;
             }
 
