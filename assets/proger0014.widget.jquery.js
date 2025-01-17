@@ -78,6 +78,10 @@
                 },
                 domManipulator: (widget, item) => {
                     item.attr('form', null);
+                    const inputName = item.attr(ATTRIBUTES.INPUT.NAME);
+                    const val = item.val();
+                    const hidden = createHidden(inputName, val);
+                    item.after(hidden);
                 },
                 reset: (widget, item) => {
                     item.prop('checked', false);
