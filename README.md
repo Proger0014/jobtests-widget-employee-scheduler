@@ -14,7 +14,7 @@
 #### без модели
 
 ```php
-<?= \proger0014\yii2\ScheduleInputWidget::widget(['widget' => 'schedule']); ?>
+<?= \proger0014\yii2\ScheduleInputWidget::widget(['name' => 'schedule']); ?>
 ```
 
 #### использование с моделью
@@ -103,7 +103,7 @@ composer require "proger0014/jobtest-widget-scheduler:1.0.2-BETA"
 
 ### использование
 
-если создается форма, модель которой имеет форму, связанный с `ScheduleInputWidget`, поле должно быть либо экземпляром `ScheduleModel`, либо наследником `ScheduleModel`
+если создается форма, модель которой имеет поле, связанного с `ScheduleInputWidget`, поле должно быть либо экземпляром `ScheduleModel`, либо наследником `ScheduleModel`
 
 *пример создания формы*
 
